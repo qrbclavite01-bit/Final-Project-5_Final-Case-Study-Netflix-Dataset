@@ -46,3 +46,41 @@ Here is a guide that you may use to bring structure to your analysis:
 
     Applying Functions. Write a function that, given a director’s name, returns their titles sorted by release_year. Create a reusable function to plot the top N categories for any categorical column.
 
+
+
+
+**--------------------------------------------------------------------------------------------------------------------------------**
+
+
+**Data Loading & Overview. Load the CSV into a DataFrame. What are its dimensions (.shape)? Display the first and last five rows. What insights do you immediately notice about the columns?**
+
+from google.colab import drive
+drive.mount('/content/drive')
+
+
+import pandas as pd
+
+df = pd.read_csv('/content/netflix_titles.csv')
+
+
+df.shape
+
+df
+
+
+Data Cleaning. Which columns contain missing values? How might you handle missing entries? Drop them or fill with a placeholder?
+
+
+df.isnull().sum()
+
+
+df['director'] = df['director'].fillna('Unknown')
+df['cast'] = df['cast'].fillna('Unknown')
+df['country'] = df['country'].fillna('Unknown')
+
+
+df = df.dropna(subset=['date_added', 'rating', 'duration'])
+
+
+
+
